@@ -49,6 +49,7 @@ public class WebConfig implements WebMvcConfigurer {
 	
 	@Bean
 	public StringHttpMessageConverter stringHttpMessageConverter() {
+		
 		StringHttpMessageConverter converter = new StringHttpMessageConverter();
 		converter.setSupportedMediaTypes(Arrays.asList(new MediaType("text", "html", Charset.forName("UTF-8"))));
 		System.out.println("string message converter");
@@ -112,9 +113,11 @@ public class WebConfig implements WebMvcConfigurer {
 	
 	@Autowired
 	private Environment env;
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler(env.getProperty("uploadLocation")).addResourceLocations(env.getProperty("reourceMapping"));
+		registry.addResourceHandler("/imgaes/**").addResourceLocations("file:/mysite-uploads/");
+		//registry.addResourceHandler(env.getProperty("uploadLocation")).addResourceLocations(env.getProperty("reourceMapping"));
 	}
 	
 }
