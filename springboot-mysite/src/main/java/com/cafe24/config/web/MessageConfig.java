@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 //@Configuration
 //@EnableWebMvc
@@ -16,10 +17,11 @@ public class MessageConfig {
 	@Bean
 	public MessageSource messageSource() {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-		messageSource.setBasename("com/cafe24/config/web/messages/message_ko");
+		messageSource.setBasename("classpath:messages/message_ko");
 		messageSource.setDefaultEncoding("UTF-8");
 		
 		
 		return messageSource;
 	}
+	
 }
