@@ -5,10 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -100,7 +98,8 @@ public class WebConfig implements WebMvcConfigurer {
 		
 		registry
 		.addInterceptor(authLogoutInterceptor())
-		.addPathPatterns("/user/logout");
+		.addPathPatterns("/user/logout")
+		.addPathPatterns("/user/update/apply");
 		
 		
 		registry
@@ -108,11 +107,12 @@ public class WebConfig implements WebMvcConfigurer {
 		.addPathPatterns("/**")
 		.excludePathPatterns("/user/auth")
 		.excludePathPatterns("/user/logout")
-		.excludePathPatterns("/assets/**");
+		.excludePathPatterns("/assets/**")
+		.excludePathPatterns("/user/update/apply");
 	}	
 	
-	@Autowired
-	private Environment env;
+	//@Autowired
+	//private Environment env;
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {

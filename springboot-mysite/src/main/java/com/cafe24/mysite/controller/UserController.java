@@ -3,7 +3,6 @@ package com.cafe24.mysite.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cafe24.mysite.service.UserService;
@@ -83,7 +81,7 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(value="/update/apply", method=RequestMethod.POST)
+	@RequestMapping(value="/update/apply")
 	public String updateApply(
 			@ModelAttribute UserVo userVo,
 			RedirectAttributes redirect
@@ -98,7 +96,7 @@ public class UserController {
 		
 		// session을 안사용 하려면.. 수정하면 logout 시키는 방식 ? 
 		
-		
+		System.out.println(userVo);
 		userService.modifyUser(userVo);
 		
 		redirect.addFlashAttribute("result", "success");

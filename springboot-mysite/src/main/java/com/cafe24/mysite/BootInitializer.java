@@ -12,5 +12,5 @@ public class BootInitializer extends SpringBootServletInitializer {
 		
 		return builder.sources(BootApp.class);
 	}
-	
+
 }

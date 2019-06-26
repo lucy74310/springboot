@@ -12,20 +12,17 @@ public class AuthLogoutInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		
+		System.out.println("!!");
 		HttpSession session = request.getSession();
 		
 		session.removeAttribute("authUser");
 		session.invalidate();
 		
-		
 		if( handler instanceof HandlerMethod == true) {
 			
 			HandlerMethod handlerMethod = (HandlerMethod) handler;
 			
-			
-			if("updatApply".equals(handlerMethod.getMethod().getName()) ) {
-				response.sendRedirect(request.getContextPath() + "/update/apply");
+			if("updateApply".equals(handlerMethod.getMethod().getName()) ) {
 				return true;
 			}
 			

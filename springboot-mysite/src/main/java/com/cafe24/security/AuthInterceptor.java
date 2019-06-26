@@ -17,23 +17,21 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		//System.out.println("authInterceptor");
 		//1. handler 종류 확인
 		System.out.println("request url:" + request.getRequestURL());
-		System.out.println("AuthInterceptor1");
+		System.out.println("AuthInterceptor");
 		if( handler instanceof HandlerMethod == false) {
+			System.out.println("AuthInterceptor this handler is not handlermethod");
 			//이미지,자바스크립트,css파일 등 
 			return true; 
 		}
 		
 		
 		//2. casting
-		System.out.println("AuthInterceptor2");
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		
 		//3. Method의 @Auth 받아오기
-		System.out.println("AuthInterceptor3");
 		Auth auth = handlerMethod.getMethodAnnotation(Auth.class);
 		
 		//4. Method에 @Auth 없으면
-		System.out.println("AuthInterceptor4");
 		// Class(Type)에 @Auth를 받아오기 
 		if( auth == null ) {
 	 		auth = handlerMethod.
@@ -43,7 +41,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		}
 		
 		//5. @Auth가 안 붙어있는 경우
-		System.out.println("AuthInterceptor5");
 		if ( auth == null ) {
 			return true;
 		}
@@ -59,7 +56,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		}
 		
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		System.out.println("AuthInterceptor7");
 		if(authUser == null) { // 인증이 안되어 있음
 			response.sendRedirect(request.getContextPath() + "/user/login");
 			return false;
@@ -68,7 +64,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		// 인증되어 있음
 		
 		
-		System.out.println("AuthInterceptor8");
 		//7. Role 가져오기 
 		Auth.Role role = auth.role();
 		System.out.println("AuthInterceptor9");

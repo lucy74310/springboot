@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cafe24.mysite.service.GuestbookService;
 import com.cafe24.mysite.vo.GuestbookVo;
@@ -60,6 +61,32 @@ public class GuestbookController {
 		
 		return "redirect:/guestbook";
 	}
+	
+	@RequestMapping("/timeline")
+	public String timeline(
+			Model model
+	) {
+
+		List<GuestbookVo> list = guestbookService.getList();
+		
+		if(list != null) {
+			model.addAttribute("list", list);
+		}
+	
+		return "guestbook/index-ajax";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/timeline/add")
+	public String timelineadd(
+			GuestbookVo guestbookVo
+	) {
+		
+		guestbookService.add(guestbookVo);
+		
+		return "ok";
+	}
+	
 	
 	
 	
