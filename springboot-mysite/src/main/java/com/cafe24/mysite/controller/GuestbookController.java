@@ -81,7 +81,8 @@ public class GuestbookController {
 	public String timelineadd(
 			GuestbookVo guestbookVo
 	) {
-		
+		System.out.println(guestbookVo);
+	
 		guestbookService.add(guestbookVo);
 		
 		return "ok";

@@ -14,34 +14,38 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.9.0.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript">
-$(function(){
-	// 업로드 다이알로그
-	var dialogUpload = $( "#dialog-upload-form" ).dialog({
-		autoOpen: false,
-		height: 280,
-		width: 300,
-		modal: true,
-		buttons: {
-			"업로드": function() {
-				$( "#dialog-upload-form form" ).submit();
-				$( this ).dialog( "close" );
-			},
-			"취소" : function() {
-				$( this ).dialog( "close" );
-			}
-		},
-		close: function() {
-			$( "#dialog-upload-form form" ).get(0).reset();	
-		}
-	});
-		
-	$("#upload-image").click( function(event) {
-		event.preventDefault();
-		dialogUpload.dialog( "open" );
-	});
-});	
-</script>
+<style>
+#gallery div {
+	position: relative;
+	margin: 30px 0;
+}
+
+#gallery div h1 {
+	display:block;
+	width: 300px;
+	text-align: left;
+}
+#gallery #upload-image {
+	display:block;
+	width: 150px;
+	float:right;
+}
+#gallery ul li {
+	width:135px;
+	height:140px;
+	display: block;
+	float:left;
+}
+#gallery ul li a.image {
+	width:120px;
+	height:120px;
+	display: block;
+	float:left;
+}
+#gallery ul li a.image {
+	background-size: 120px;
+}
+</style>
 </head>
 <body>
 	<div id="container">
@@ -240,5 +244,33 @@ $(function(){
 		</c:import>
 		<c:import url="/WEB-INF/views/includes/footer.jsp" />
 	</div>
+<script type="text/javascript">
+$(function(){
+	// 업로드 다이알로그
+	var dialogUpload = $( "#dialog-upload-form" ).dialog({
+		autoOpen: false,
+		height: 280,
+		width: 300,
+		modal: true,
+		buttons: {
+			"업로드": function() {
+				$( "#dialog-upload-form form" ).submit();
+				$( this ).dialog( "close" );
+			},
+			"취소" : function() {
+				$( this ).dialog( "close" );
+			}
+		},
+		close: function() {
+			$( "#dialog-upload-form form" ).get(0).reset();	
+		}
+	});
+		
+	$("#upload-image").click( function(event) {
+		event.preventDefault();
+		dialogUpload.dialog( "open" );
+	});
+});	
+</script>
 </body>
 </html>
